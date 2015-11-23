@@ -1,0 +1,46 @@
+<html>
+  <head>
+  	<title>Test page to resize image
+  	</title>
+  </head>
+  <body>
+	<script>
+	  var image = new Image();
+	  image.src = "https://lh4.googleusercontent.com/-aNGyNuWkowo/VlJZSy-DQ7I/AAAAAAAC0Wk/0zv8Rt24b-g/w2212-h1244-no/test-image.jpeg";
+	  image.onload = function(){
+	  	var original_width = this.width;
+	  	var original_height = this.height;
+	  	if (original_height >= original_width){
+	  	  // Fixed with to 190px
+	  	  var width = 190;
+	  	  var proportion = (width * 100)/original_width;
+	  	  var height = (original_height * proportion)/100;
+	  	}else{
+	  	  // Fixed height to 190px
+	  	  var height = 190;
+	  	  var proportion = (height * 100)/original_height;
+	  	  var width = (original_width * proportion)/100;
+	  	}
+	  	image.style.width = width + 'px';
+	  	image.style.height = height + 'px';
+	  	document.getElementById('image-container').appendChild(image);
+	  }
+	</script>
+	<style>
+	  .image-crop {
+	  	overflow: hidden;
+	  	position: relative;
+	  	width: 190px;
+	  	height: 190px;
+	  	border:5px solid black;
+	  }
+	  .image-container {
+	  	position: absolute;
+	  }
+	</style>
+	<div class="image-crop">
+		<div id="image-container" class="image-container">
+		</div>
+  	</div>
+  </body>
+</html>
